@@ -12,39 +12,27 @@
 
 <script>
 import { ref } from 'vue'
-import {auth} from "../firebase/config"
-// import useSignup from "../composables/useSignup"
+// import {auth} from "../firebase/config"
+import useSignup from "../composables/useSignup"
 
 export default {
     setup () {
 
 
-        let error = ref("");
+     
         let displayName = ref("");
         let email = ref("");
         let password = ref("");
-        
 
-        let signUP =async () => {
-          try{
-            let res = await auth.createUserWithEmailAndPassword(email.value,password.value)
-        
+        let {error,createAccount}= useSignup()
 
-       
-        if(!res) {
-          throw new Error("could not fond new user")
-        } 
-        res.user.updateProfile({displayName:displayName.value})
-        
-        console.log(res.user)
-
-          }catch(err) {
-            error.value = err.message;
-            // console.log(error.value)
-          }
+         let signUP =async () => {
+          let res = await createAccount(email.value,password.value,displayName.value)
+          console.log(res.user)
+         
         }
 
-        return { displayName,email,password,signUP,error };
+        return { displayName,email,password,signUP};
     }
 
 }

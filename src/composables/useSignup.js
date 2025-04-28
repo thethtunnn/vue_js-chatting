@@ -12,7 +12,9 @@ let createAccount =async (email,password,displayName) => {
                                   //displayName:displayName
         res.user.updateProfile({displayName})
         console.log(res.user)
-        return res;
+
+        return res; //createAccount is return res obj
+
      }catch(err) {
        error.value = err.message;
        
