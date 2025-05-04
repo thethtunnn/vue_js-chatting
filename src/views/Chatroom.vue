@@ -1,6 +1,7 @@
 <template>
 <div class="container">
     <Navbar></Navbar>
+    <ChatWindow></ChatWindow>
     <NewChatForm></NewChatForm>
 </div>
 
@@ -9,6 +10,7 @@
 
 <script>
 
+import ChatWindow from '../components/ChatWindow'
 import NewChatForm from '../composables/NewChatForm'
 import getUser from '../composables/getUser'
 import Navbar from '../components/Navbar'
@@ -18,6 +20,7 @@ import { watch } from 'vue'
 
 export default {
   components: {
+    ChatWindow,
     NewChatForm, Navbar },
   setup () {
     let {user} = getUser();

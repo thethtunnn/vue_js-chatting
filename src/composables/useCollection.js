@@ -1,6 +1,7 @@
 import { ref } from "vue";
 import {db} from "../firebase/config";
 let useCollection = (collection) => {
+    // error ref inside function need new error create when call useCollection 
     let error = ref(null);
     let addDoc = async(doc) => {
         try{

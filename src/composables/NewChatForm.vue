@@ -18,6 +18,10 @@ export default {
     setup() {
         let message = ref("");
         let { user }= getUser();
+      
+        // useCollection("messages")is a actual name let useCollection = (collection) => {
+        // so "message" inside (** collection **)
+
         let {error,addDoc} = useCollection("messages");
         let handleSubmit =async () => {
             let chat = {
@@ -26,8 +30,9 @@ export default {
                 created_at : timestamp()
             }
             
-            
+            // message is few second late in firebase
             await addDoc(chat)
+            // message is sent after clear messsage value
             message.value = "";
         }
 
