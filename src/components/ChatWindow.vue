@@ -2,7 +2,7 @@
 <div class="chat-window">
     <div class="message" v-for="message in messages" :key="message.id">
         <div class="single">
-            <span class="created-at">{{message.created_at}}</span>
+            <span class="created-at">{{message.created_at.toDate()}}</span>
             <span class="name">{{message.name}}</span>
             <span class="message">{{message.message}}</span>
 
@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { ref } from 'vue';
+import { ref } from 'vue'; 
 import {db} from "../firebase/config";
 export default {
     setup() {
@@ -29,7 +29,14 @@ export default {
                 //  doc.data() call document filed javascript object { "name": "mg mg"}  => { name: "mg mg"}
 
                 let document = {...doc.data(),id: doc.id}
-                result.push(document)
+
+                //problem error of created_at null is solve
+                // if(doc.data().created_at) {
+                //     result.push(document)
+                // }
+                // if created_at is data inside run this code result.push(document)
+                // 1+1 === 2 && console.log(true)
+                doc.data().created_at && result.push(document)
                   
             } )
                 messages.value = result

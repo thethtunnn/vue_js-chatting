@@ -27,7 +27,7 @@ export default {
             let chat = {
                 message : message.value,
                 name : user.value.displayName,
-                created_at : timestamp()
+                created_at : timestamp()  //onsnapshop is first run createc_at is * null * so error next time is data inside
             }
             
             // message is few second late in firebase
